@@ -268,7 +268,7 @@ begin
 
         SbiePath := DrvPath;
       end else begin
-        SbiePath := ExpandConstant('{autopf}') + '\{#MyAppName}';
+        SbiePath := ExpandConstant('{autopf}') + '\Sandboxie';
       end;
     end;
   end;
