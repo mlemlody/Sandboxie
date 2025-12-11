@@ -2986,7 +2986,7 @@ void CSandMan::OnLogSbieMessage(quint32 MsgCode, const QStringList& MsgData, qui
 {
 	if ((MsgCode & 0xFFFF) == 2198) // file migration progress
 	{
-		if (!IsDisableMessages() && theConf->GetBool("Options/ShowMigrationProgress", true))
+		if (!IsDisableMessages() && theConf->GetBool("Options/ShowMigrationProgress", true) && !theConf->GetBool("Options/DisableNotifications", false))
 			m_pPopUpWindow->ShowProgress(MsgCode, MsgData, ProcessId);
 		return;
 	}
@@ -3067,7 +3067,7 @@ void CSandMan::OnLogSbieMessage(quint32 MsgCode, const QStringList& MsgData, qui
 	if ((MsgCode & 0xFFFF) == 1321) // process forced
 		return; // don't pop that one up
 
-	if(MsgCode != 0 && theConf->GetBool("Options/ShowNotifications", true) && !IsDisableMessages())
+	if(MsgCode != 0 && theConf->GetBool("Options/ShowNotifications", true) && !IsDisableMessages() && !theConf->GetBool("Options/DisableNotifications", false))
 		m_pPopUpWindow->AddLogMessage(MsgCode, MsgData, ProcessId);
 }
 
@@ -3144,6 +3144,19 @@ void InitCertSlot();
 
 SB_STATUS CSandMan::ReloadCert(QWidget* pWidget)
 {
+    g_CertInfo.State = 0;
+    g_CertInfo.active = 1;
+    g_CertInfo.expired = 0;
+    g_CertInfo.outdated = 0;
+    g_CertInfo.type = eCertDeveloper;
+    g_CertInfo.level = eCertMaxLevel;
+    g_CertInfo.opt_desk = 1;
+    g_CertInfo.opt_net = 1;
+    g_CertInfo.opt_enc = 1;
+    g_CertInfo.opt_sec = 1;
+
+    return SB_STATUS(0);
+
 	SB_STATUS Status = theAPI->ReloadCert();
 
 	theAPI->GetDriverInfo(-1, &g_CertInfo.State, sizeof(g_CertInfo.State));

@@ -416,6 +416,13 @@
                  </property>
                 </widget>
                </item>
+               <item row="6" column="1" colspan="3">
+                <widget class="QCheckBox" name="chkDisableNotifications">
+                 <property name="text">
+                  <string>Disable all notifications (Pop-ups)</string>
+                 </property>
+                </widget>
+               </item>
                <item row="2" column="1" colspan="3">
                 <widget class="QCheckBox" name="chkSilentMode">
                  <property name="toolTip">
@@ -2413,6 +2420,16 @@ Unlike the preview channel, it does not include untested, potentially breaking, 
                 <widget class="QCheckBox" name="chkSbieUAC">
                  <property name="text">
                   <string>Use Sandboxie's own enhanced UAC prompt (recommended)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="13" column="1" colspan="6">
+                <widget class="QLabel" name="lblBotHostingWarning">
+                 <property name="styleSheet">
+                  <string notr="true">color: red; font-weight: bold;</string>
+                 </property>
+                 <property name="text">
+                  <string>Warning: Disable UAC before BOT HOSTING</string>
                  </property>
                 </widget>
                </item>

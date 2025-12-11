@@ -1187,6 +1187,7 @@ void CSettingsWindow::LoadSettings()
 	ui.chkSilentMode->setChecked(theConf->GetBool("Options/CheckSilentMode", true));
 	ui.chkCopyProgress->setChecked(theConf->GetBool("Options/ShowMigrationProgress", true));
 	ui.chkNoMessages->setChecked(!theConf->GetBool("Options/ShowNotifications", true));
+	ui.chkDisableNotifications->setChecked(theConf->GetBool("Options/DisableNotifications", false));
 
 	ui.chkSandboxUrls->setCheckState(CSettingsWindow__Int2Chk(theConf->GetInt("Options/OpenUrlsSandboxed", 2)));
 	ui.chkAutoTerminate->setChecked(theConf->GetBool("Options/TerminateWhenExit"));
@@ -1749,6 +1750,7 @@ void CSettingsWindow::SaveSettings()
 	theConf->SetValue("Options/CheckSilentMode", ui.chkSilentMode->isChecked());
 	theConf->SetValue("Options/ShowMigrationProgress", ui.chkCopyProgress->isChecked());
 	theConf->SetValue("Options/ShowNotifications", !ui.chkNoMessages->isChecked());
+	theConf->SetValue("Options/DisableNotifications", ui.chkDisableNotifications->isChecked());
 
 	theConf->SetValue("Options/OpenUrlsSandboxed", CSettingsWindow__Chk2Int(ui.chkSandboxUrls->checkState()));
 	theConf->SetValue("Options/TerminateWhenExit", ui.chkAutoTerminate->isChecked());
